@@ -79,7 +79,7 @@ public class CuentaController {
 	}
 	
 	@RequestMapping(value = "form-cuenta", method = RequestMethod.POST)
-	public String guardar(@Valid Cuenta cuenta, BindingResult result, Model model, SessionStatus status) {
+	public String guardar(@Valid Cuenta cuenta, BindingResult result, Model model, SessionStatus status, RedirectAttributes flash) {
 		
 		//validacion de forma explicita
 		//cuentaValidator.validate(cuenta, result);
@@ -95,8 +95,7 @@ public class CuentaController {
 			model.addAttribute("errList", "");
 		}
 		
-		model.addAttribute("titulo", "Formulario cuenta");
-		model.addAttribute("mensaje", "se guardo la cuenta correctamente");
+		flash.addAttribute("completeMsj", "Se guardo correctamente");
 		cuentaDao.save(cuenta);
 		status.setComplete(); //Este metodo se encarga de la limpieza adecuada despues de usar el formulario HTML 
 		//elimina el objeto con el que estamos trabajando

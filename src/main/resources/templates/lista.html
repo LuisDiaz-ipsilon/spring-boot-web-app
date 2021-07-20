@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8" />
 <title th:text="${titulo}"></title>
+<link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet"/>
 </head>
 
 <body>
@@ -11,10 +12,11 @@
 	<br>
 	<p th:text="${mensaje}"></p>
 	<br>
+	<a class="btnAceptar" th:href="@{/form-cuenta}">Registra nueva cuenta</a>
+	<br>
+	<br>
 	
-	<a th:href="@{/form-cuenta}">Registra nueva cuenta</a>
-	
-	<p th:if="${result}" th:text="${mensaje}"></p>
+	<p class="msjAdvertencia" th:if="${result}" th:text="${mensaje}"></p>
 	
 	<table>
 		<thead>
@@ -27,7 +29,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<p th:if="${cuentas.isEmpty()}">la lista de cuentas esta vacia</p>
+			<p class="msjAdvertencia" th:if="${cuentas.isEmpty()}">la lista de cuentas esta vacia</p>
 
 			<tr th:each="cuenta: ${cuentas}"></tr>
 			<tr th:each="cuenta: ${cuentas}">
@@ -36,8 +38,8 @@
 				<td th:text="${cuenta.getSaldo()}"></td>
 				<td th:text="${cuenta.getNumeroTelefono()}"></td>
 				<td th:text="${cuenta.getDiaCreacion()}"></td>
-				<td><a th:href="@{/form-cuenta/} + ${cuenta.getId()}" th:text="'Editar'"></a></td>
-				<td><a th:href="@{/eliminarcuenta/} + ${cuenta.getId()}" th:text="'Eliminar'" onclick="return confirm('¿Desea eliminar la cuenta?');"></a></td>
+				<td><a class="btnEditar" th:href="@{/form-cuenta/} + ${cuenta.getId()}" th:text="'Editar'"></a></td>
+				<td><a class="btnEliminar" th:href="@{/eliminarcuenta/} + ${cuenta.getId()}" th:text="'Eliminar'" onclick="return confirm('¿Desea eliminar la cuenta?');"></a></td>
 			</tr>
 		</tbody>
 	</table>
