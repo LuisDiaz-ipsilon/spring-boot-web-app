@@ -1,5 +1,6 @@
 package com.cdispractica.springboot.app.models.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -47,7 +48,18 @@ public class CuentaDaoImpl implements ICuentaDao {
 		
 	}
 	
-	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Cuenta> findByNumeroTelefono(String term) {
+		List<Cuenta> cuentas = new ArrayList<Cuenta>();
+		for(Cuenta cuenta : this.findAll()) {
+			if(cuenta.getNumeroTelefono().equals(term)) {
+				cuentas.add(cuenta);
+			}
+		}
+		return cuentas;
+	}
+
 	
 
 }

@@ -41,6 +41,14 @@ td {
 	margin: 10px;
 }
 
+.msjSucces{
+	background-color:  #3abb66; 
+	padding: auto;
+	text-align: center;
+	width: 38%;
+	margin: 10px;
+}
+
 .btnAceptar {
 	background-color: #4CAF50; 
     border: none;

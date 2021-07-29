@@ -49,9 +49,12 @@ public class CuentaController {
 	}
 
 	@RequestMapping(value="/lista", method = RequestMethod.GET)
-	public String cuentaLista(Model model) {
+	public String cuentaLista(Model model, Map<String, Object> modelCuenta) {
+		Cuenta cuenta = new Cuenta();
+		modelCuenta.put("cuenta", cuenta);
 		model.addAttribute("titulo", "Lista de cuentas");
 		model.addAttribute("cuentas", cuentaDao.findAll());
+		
 		return "lista";
 	}
 	
@@ -116,5 +119,19 @@ public class CuentaController {
 		} 
 		return "redirect:/lista";
 	}
+	
+	@RequestMapping(value="/buscar-numero-tel", method = RequestMethod.POST)
+	public String cargarCuentasNumeroTelefono(Cuenta cuenta, RedirectAttributes flash){
+		
+		if(!cuentaDao.findByNumeroTelefono(cuenta.getNumeroTelefono()).isEmpty()) {
+			System.out.println("Si existe una cuenta con ese valor");
+			flash.addFlashAttribute("listCuentasNumeroT", cuentaDao.findByNumeroTelefono(cuenta.getNumeroTelefono()));
+			flash.addFlashAttribute("mensajeSucces", "Se encontraron cuentas");
+		} else flash.addFlashAttribute("mensaje", "No se encontraron cuentas");
+		
+		return "redirect:/lista";
+	}
+	
+	
 	
 }
