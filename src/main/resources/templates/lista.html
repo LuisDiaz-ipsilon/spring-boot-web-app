@@ -14,8 +14,7 @@
 	<p class="msjAdvertencia" th:text="${mensaje}"></p>
 	<p class="msjSucces" th:text="${mensajeSucces}"></p>
 	<br>
-	<form th:action="cuentaController"></form>
-	  
+		  
 	<form th:action="@{/buscar-numero-tel}" th:object="${cuenta}" method="post">
 		<table>
 			<tr>
