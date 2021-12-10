@@ -154,14 +154,14 @@ public class TarjetaController {
 		// Con este codigo agregamos a la vista de tarjetas de nuestra cuenta.
 		// misma cuenta a la que estamos haciendo referencia a la tarjeta en creacion
 		Cuenta cuenta = cuentaDao.findOne(tarjeta.getCuenta().getId());
-		List<Tarjeta> tarjetas = cuenta.getTarjetas();
-		if (tarjetas.size() < 2) {// si la cuenta tiene menos de 2 tarjetas entonces continuar:
+		//List<Tarjeta> tarjetas = cuenta.getTarjetas();
+		/*if (tarjetas.size() < 2) {// si la cuenta tiene menos de 2 tarjetas entonces continuar:
 			tarjetas.add(tarjeta);
 			cuenta.setTarjetas(tarjetas);
 		} else { // si la cuenta tiene mas de 2 tarjetas entonces mencionar la imposibilidad:
 			flash.addFlashAttribute("mensaje", "La cuenta no puede tener mas de 2 tarjetas");
 			return "redirect:formtarjeta";
-		}
+		}*/
 
 		model.addAttribute("titulo", "Formulario de tarjeta");
 		model.addAttribute("mensaje", "Se envio la informacion correctamente");

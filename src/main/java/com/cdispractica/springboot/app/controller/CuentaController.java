@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cdispractica.springboot.app.models.dao.CuentaDaoImpl;
 import com.cdispractica.springboot.app.models.dao.ICuentaDao;
+import com.cdispractica.springboot.app.models.dao.ITarjetaDao;
 import com.cdispractica.springboot.app.models.entity.Cuenta;
 import com.cdispractica.springboot.app.validator.CuentaValidator;
 
@@ -43,6 +43,9 @@ public class CuentaController {
 
 	@Autowired
 	private CuentaValidator cuentaValidator;
+	
+	@Autowired
+	private ITarjetaDao tarjetaDao; 
 
 	/**
 	 * Realiza la validacion implicita, en todo objeto Cuenta se tomara en cuenta si
@@ -189,8 +192,8 @@ public class CuentaController {
 	public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 
 		if (id != null && id > 0) {
-			Cuenta cuenta = cuentaDao.findOne(id);
-			if (cuenta.getTarjetas().isEmpty()) {
+			if (tarjetaDao.findByCuentaId(id.toString()).isEmpty()) {
+				System.out.println("La lista esta vacia");
 				cuentaDao.delete(id);
 			} else {
 				flash.addFlashAttribute("mensaje", "La cuenta tiene tarjetas pendientes por eliminar");

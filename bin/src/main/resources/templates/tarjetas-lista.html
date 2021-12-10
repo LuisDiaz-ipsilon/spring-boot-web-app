@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" /><!-- IMPORTANTE  cerrar la etiqueta -->
+<title th:text="${titulo}" ></title>
+<link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
+</head>
+<body>
+	<h3 th:text="${titulo}"></h3>
+	<hr>
+	
+	<a th:href="@{/formtarjeta}">Registrar tarjeta</a>
+	
+	
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Numero de tarjeta</th>
+                <th>ICV</th>
+                <th>Vencimiento</th>
+                <th>Cuenta</th>
+            </tr>
+        </thead>
+        <tbody>
+        <p th:if="${tarjetas.isEmpty()}">No hay tarjetas en la base de datos</p>
+            <tr th:each="tarjeta: ${tarjetas}"></tr>
+            <tr th:each="tarjeta: ${tarjetas}">
+                <td th:text="${tarjeta.getId()}"></td>
+                <td th:text="${tarjeta.getNumeroTarjeta()}"></td>
+                <td th:text="${tarjeta.getIcv()}"></td>
+                <td th:text="${tarjeta.getVencimiento()}"></td>
+                <td th:text="${'Nombre: '+tarjeta.getCuenta().getNombre()+' ID: '+tarjeta.getCuenta().getId()}"></td>
+                <td><a th:href="@{/formtarjeta/} + ${tarjeta.getId()}" th:text="'Editar'"></a></td>
+                <td><a th:href="@{/eliminar/} + ${tarjeta.getId()}" th:text="'Eliminar'" onclick="return confirm('¿Desea eliminar la tarjeta?');"></a></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/}">Inicio</a>
+</body>
+</html>

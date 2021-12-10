@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.cdispractica.springboot.app.controller"},{"l":"com.cdispractica.springboot.app.editors"},{"l":"com.cdispractica.springboot.app.errors"},{"l":"com.cdispractica.springboot.app.models.entity"},{"l":"com.cdispractica.springboot.app.validator"}]

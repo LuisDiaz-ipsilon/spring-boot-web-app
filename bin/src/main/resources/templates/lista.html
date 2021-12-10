@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}"></title>
+<link href="../static/css/Layout.css" th:href="@{/css/Layout.css}"
+	rel="stylesheet" />
+</head>
+
+<body>
+	<h1 th:text="${titulo}"></h1>
+	<br>
+	<p class="msjAdvertencia" th:text="${mensaje}"></p>
+	<p class="msjSucces" th:text="${mensajeSucces}"></p>
+	<br>
+		  
+	<form th:action="@{/buscar-numero-tel}" th:object="${cuenta}" method="post">
+		<table>
+			<tr>
+				<td>Numero de telefono</td>
+				<td><input type="text" th:field="*{numeroTelefono}" required></td>
+			</tr>
+			
+			<br>
+			<input class="btnAceptar" type="submit" value="Buscar" />
+		</table>
+	</form>  
+
+	<br>
+	<br>
+	<table th:if="${listCuentasNumeroT}">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Saldo</th>
+				<th>Numero de telefono</th>
+				<th>Dia de creacion</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cuentabyNum: ${listCuentasNumeroT}"></tr>
+			<tr th:each="cuentabyNum: ${listCuentasNumeroT}">
+				<td th:text="${cuentabyNum.getId()}"></td>
+				<td th:text="${cuentabyNum.getNombre()}"></td>
+				<td th:text="${cuentabyNum.getSaldo()}"></td>
+				<td th:text="${cuentabyNum.getNumeroTelefono()}"></td>
+				<td th:text="${cuentabyNum.getDiaCreacion()}"></td>
+				<td><a class="btnEditar" th:href="@{/form-cuenta/} + ${cuentabyNum.getId()}" th:text="'Editar'"></a></td>
+				<td><a class="btnEliminar" th:href="@{/eliminarcuenta/} + ${cuentabyNum.getId()}" th:text="'Eliminar'"
+					onclick="return confirm('¿Desea eliminar la cuenta?');"></a></td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+	<br>
+	<!-- En la parte de abajo se encuentra la lista de todos los registros ------------------------------------------------ -->	
+	<table th:if="!${listCuentasNumeroT}">
+		<a class="btnAceptar" th:href="@{/form-cuenta}">Registra nueva cuenta</a>
+		<br>
+		<br>
+	
+		<p class="msjAdvertencia" th:if="${result}" th:text="${mensaje}"></p>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Saldo</th>
+				<th>Numero de telefono</th>
+				<th>Dia de creacion</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<p class="msjAdvertencia" th:if="${cuentas.isEmpty()}">la lista
+				de cuentas esta vacia</p>
+
+			<tr th:each="cuenta: ${cuentas}"></tr>
+			<tr th:each="cuenta: ${cuentas}">
+				<td th:text="${cuenta.getId()}"></td>
+				<td th:text="${cuenta.getNombre()}"></td>
+				<td th:text="${cuenta.getSaldo()}"></td>
+				<td th:text="${cuenta.getNumeroTelefono()}"></td>
+				<td th:text="${cuenta.getDiaCreacion()}"></td>
+				<td><p th:each="tarjeta : ${cuenta.getTarjetas()}" th:text="${tarjeta.getId()}"></p></td>
+				<td><a class="btnEditar" th:href="@{/form-cuenta/} + ${cuenta.getId()}" th:text="'Editar'"></a></td>
+				<td><a class="btnEliminar" th:href="@{/eliminarcuenta/} + ${cuenta.getId()}" th:text="'Eliminar'"
+					onclick="return confirm('¿Desea eliminar la cuenta?');"></a></td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+	<a th:if="!${listCuentasNumeroT}" th:href="@{/}">Inicio</a>
+	<a th:if="${listCuentasNumeroT}" th:href="@{/lista}">Volver</a>
+</body>
+
+</html>

@@ -2,16 +2,12 @@ package com.cdispractica.springboot.app.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -49,8 +45,8 @@ public class Cuenta implements Serializable {
 	// @DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date diaCreacion;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cuenta", cascade = CascadeType.MERGE)
-	private List<Tarjeta> tarjetas;
+	/*@OneToMany(fetch = FetchType.LAZY, mappedBy = "cuenta", cascade = CascadeType.MERGE)
+	private List<Tarjeta> tarjetas;*/
 
 	/**
 	 * Obtener el id de la Cuenta.
@@ -154,11 +150,11 @@ public class Cuenta implements Serializable {
 		return serialVersionUID;
 	}
 
-	public List<Tarjeta> getTarjetas() {
+	/*public List<Tarjeta> getTarjetas() {
 		return tarjetas;
 	}
 
 	public void setTarjetas(List<Tarjeta> tarjetas) {
 		this.tarjetas = tarjetas;
-	}
+	}*/
 }

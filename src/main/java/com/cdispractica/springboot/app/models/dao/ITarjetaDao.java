@@ -37,11 +37,15 @@ public interface ITarjetaDao {
 	 * @return tarjeta Retorna una tarjeta con todos sus valores.
 	 */
 	public Tarjeta findOne(Long id);
+	
+	public List<Tarjeta> findByCuentaId(String term);
 
 	/**
 	 * Elimina una Tarjeta con el ID de la Tarjeta existente.
 	 * @param id En caso de que el id no coincida con ninguna tarjeta no se eliminara ninguna tarjeta.
 	 */
 	public void delete(Long id);
+	
+
 
 }

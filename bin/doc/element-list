@@ -1,0 +1,7 @@
+com.cdispractica.springboot.app.controller
+com.cdispractica.springboot.app.editors
+com.cdispractica.springboot.app.errors
+com.cdispractica.springboot.app.models.dao
+com.cdispractica.springboot.app.models.entity
+com.cdispractica.springboot.app.services
+com.cdispractica.springboot.app.validator

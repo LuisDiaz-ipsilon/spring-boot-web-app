@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<!-- IMPORTANTE  cerrar la etiqueta -->
+<title th:text="${titulo}"></title>
+<link href="../static/css/Layout.css" th:href="@{/css/Layout.css}"
+	rel="stylesheet" />
+</head>
+<body>
+
+	<h3 th:text="${titulo}"></h3>
+
+	<tbody>
+		
+		<div>
+			<!-- importante agregar los atributos de esta etiqueta form -->
+			<form th:action="@{/form-cuenta}" th:object="${cuenta}" method="post">
+				<table>
+					<tr>
+						<td>Nombre de cliente</td>
+						<td><input type="text" th:field="*{nombre}" required></td>
+						<div class="msjAdvertencia" th:if="${#fields.hasErrors('nombre')}"
+							th:errors="*{nombre}"></div>
+					</tr>
+					<tr>
+						<td>Saldo</td>
+						<td><input type="text" th:field="*{saldo}" required></td>
+						<div class="msjAdvertencia" th:if="${#fields.hasErrors('saldo')}"
+							th:errors="*{saldo}"></div>
+					</tr>
+					<tr>
+						<td>Numero de telefono</td>
+						<td><input type="text" th:field="*{numeroTelefono}" required></td>
+						<div class="msjAdvertencia"
+							th:if="${#fields.hasErrors('numeroTelefono')}"
+							th:errors="*{numeroTelefono}"></div>
+					</tr>
+					<tr>
+						<td>Fecha de actual (yyyy-MM-dd)</td>
+						<td><input type="text" th:field="*{diaCreacion}"
+							placeholder="yyyy-MM-dd" required></td>
+						<div class="msjAdvertencia"
+							th:if="${#fields.hasErrors('diaCreacion')}"
+							th:errors="*{diaCreacion}"></div>
+					</tr>
+				</table>
+
+				<br>
+				<input class="btnAceptar" type="submit" value="Registrar cuenta" />
+			</form>
+		</div>
+	</tbody>
+	<br>
+	<a class="backButton" th:href="@{/lista}">Volver...</a>
+</body>
+</html>
