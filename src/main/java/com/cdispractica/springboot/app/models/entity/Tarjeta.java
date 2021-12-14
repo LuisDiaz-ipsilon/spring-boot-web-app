@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -38,6 +39,7 @@ public class Tarjeta implements Serializable {
 	private String numeroTarjeta;
 
 	@Column(name = "icv", nullable = false, length = 3)
+	@NotEmpty
 	private String icv;
 
 	@Column(name = "vencimiento")
@@ -45,8 +47,6 @@ public class Tarjeta implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date vencimiento;
 
-	// mientras utilizamos esta alternativa de crear otra columna manejaremos el
-	// optional=false, pero el valor id_cuenta en optional=true
 	@JoinColumn(name = "cuenta", referencedColumnName = "id", nullable = true)
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	private Cuenta cuenta;

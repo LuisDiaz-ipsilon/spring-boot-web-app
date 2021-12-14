@@ -40,13 +40,9 @@ public class Cuenta implements Serializable {
 	private String numeroTelefono;
 
 	@Column(name = "dia_creacion")
-	@NotEmpty
 	// @Temporal(TemporalType.DATE)
 	// @DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date diaCreacion;
-
-	/*@OneToMany(fetch = FetchType.LAZY, mappedBy = "cuenta", cascade = CascadeType.MERGE)
-	private List<Tarjeta> tarjetas;*/
 
 	/**
 	 * Obtener el id de la Cuenta.
@@ -150,11 +146,4 @@ public class Cuenta implements Serializable {
 		return serialVersionUID;
 	}
 
-	/*public List<Tarjeta> getTarjetas() {
-		return tarjetas;
-	}
-
-	public void setTarjetas(List<Tarjeta> tarjetas) {
-		this.tarjetas = tarjetas;
-	}*/
 }
