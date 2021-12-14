@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * Entidad Cuenta con persistencia, representa tabla "cuentas" en DB Atributos.
@@ -30,10 +31,11 @@ public class Cuenta implements Serializable {
 	private Long id;
 
 	@Column
+	@NotEmpty
 	private String nombre;
 
 	@Column
-	@NotEmpty
+	@NotNull
 	private double saldo;
 
 	@Column(name = "numero_telefono")
