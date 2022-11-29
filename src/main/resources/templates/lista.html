@@ -58,7 +58,7 @@
 	<br>
 	<!-- En la parte de abajo se encuentra la lista de todos los registros ------------------------------------------------ -->	
 	<table th:if="!${listCuentasNumeroT}">
-		<a class="btnAceptar" th:href="@{/form-cuenta}">Registra nueva cuenta</a>
+		<a sec:authorize="hasRole('ROLE_ADMIN')" class="btnAceptar" th:href="@{/form-cuenta}">Registra nueva cuenta</a>
 		<br>
 		<br>
 	

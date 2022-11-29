@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head th:fragment="head">
-<meta charset="UTF-8" />
-<title>Banco Test Spring</title>
-<link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
-</head >
+	<meta charset="UTF-8" />
+	<title>Banco Test Spring</title>
+	<link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet" />
+</head>
+
 <body>
 
 	<header th:fragment="header">
-		<h3><img width="430" height="100" th:src="@{/images/imgTop.png}"/> </h3>
+		<div class="topnav">
+			<h3><img width="430" height="100" th:src="@{/images/imgTop.png}" />
+			<a sec:authorize="!isAuthenticated()" href="/login">Login</a>
+			<form sec:authorize="isAuthenticated()" id="logoutForm" th:action="@{/logout}" method="post">
+				<button class="btnEliminar" onclick="document.getElementById('logoutForm').submit();"
+					type="submit">Salir</button>
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+			</form>
+			</h3>
+		</div>
+		<div class="msjSucces" th:if="${success != null}" th:text="${success}"></div>
+		<div class="msjAdvertencia" th:if="${error != null}" th:text="${error}"></div>
+		<div class="msjAdvertencia" th:if="${warning != null}" th:text="${warning}"></div>
+		<div class="msjAdvertencia" th:if="${info != null}" th:text="${info}"></div>
 		<br><br>
-	</header >
-	
-		
+	</header>
+
+
 	<footer th:fragment="footer" class="container">
-	</footer >
+	</footer>
 </body>
+
 </html>

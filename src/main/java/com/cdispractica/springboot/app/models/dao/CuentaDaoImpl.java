@@ -22,6 +22,7 @@ public class CuentaDaoImpl implements ICuentaDao {
 	@Override
 	public List<Cuenta> findAll() {
 		// TODO Auto-generated method stub
+
 		return em.createQuery("from Cuenta").getResultList();
 	}
 

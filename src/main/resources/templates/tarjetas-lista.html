@@ -9,7 +9,7 @@
 	<h3 th:text="${titulo}"></h3>
 	<hr>
 	
-	<a th:href="@{/formtarjeta}">Registrar tarjeta</a>
+	<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/formtarjeta}">Registrar tarjeta</a>
 	
 	
     <br>

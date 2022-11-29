@@ -9,8 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 /**
  * Entidad Cuenta con persistencia, representa tabla "cuentas" en DB Atributos.
@@ -42,8 +47,8 @@ public class Cuenta implements Serializable {
 	private String numeroTelefono;
 
 	@Column(name = "dia_creacion")
-	// @Temporal(TemporalType.DATE)
-	// @DateTimeFormat(pattern = "yyyy-MM-dd")
+	//@Temporal(TemporalType.DATE)
+	//@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date diaCreacion;
 
 	/**
